@@ -1,6 +1,11 @@
 class TodosController < ApplicationController
+  before_action :authenticate
+  #typically happens in application controller
+  #had to change this from before_filter to before_action
+  #because I'm using a newer version of rails than the video
+
   def index
-    @todos = Todo.all
+    @todos = Todo.where(email: current_session)
   end
 
   def new
@@ -8,7 +13,7 @@ class TodosController < ApplicationController
   end
 
   def create
-    Todo.create(todo_params)
+    Todo.create(todo_params.merge(email: current_session))
     redirect_to todos_path
   end
 
