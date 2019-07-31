@@ -4,13 +4,11 @@ feature "User completes a Todo item" do
   scenario "successfully" do
     sign_in
 
-    click_on "Add a new todo"
-    fill_in "Title", with: "Buy milk"
-    click_on "Submit"
-
+    create_todo "Buy milk"
     click_on "Mark task complete"
 
-    expect(page).to have_css '.todos li.completed', text: 'Buy milk'
+    expect(page).to display_completed_todo "Buy milk"
+    #have_css is a method
   end
-  
+
 end
