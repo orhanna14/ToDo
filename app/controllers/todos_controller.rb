@@ -5,7 +5,7 @@ class TodosController < ApplicationController
   #because I'm using a newer version of rails than the video
 
   def index
-    @todos = Todo.where(email: current_session)
+    @todos = current_user.todos
   end
 
   def new
@@ -13,7 +13,7 @@ class TodosController < ApplicationController
   end
 
   def create
-    Todo.create(todo_params.merge(email: current_session))
+    current_user.todos.create(todo_params)
     redirect_to todos_path
   end
 
