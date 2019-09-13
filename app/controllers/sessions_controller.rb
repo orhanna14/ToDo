@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
 
 def new
+ #Add something about when a user signs in, they can access and create
+ #their todos
 end
 
 def create
